@@ -1,0 +1,12 @@
+{
+    "require": {
+        "clancats/hydrahon": "^1.1",
+        "doctrine/inflector": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "core\\": "core/",
+            "src\\": "src/"
+        }
+    }
+}
