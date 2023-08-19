@@ -2,6 +2,8 @@
 
 namespace src;
 
+date_default_timezone_set('America/Sao_Paulo');
+
 class Config
 {
     const BASE_DIR = '/projetos/mvc/public';

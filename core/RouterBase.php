@@ -5,8 +5,8 @@ namespace core;
 use \src\Config;
 
 // header('Access-Control-Allow-Origin: *');
-// header('Access-Control-Allow-Methods: *');
-// header('Content-Type: application/x-www-form-urlencoded');
+// header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, OPTIONS');
+// header('Access-Control-Allow-Headers: Content-Type');
 
 class RouterBase
 {
