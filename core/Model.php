@@ -47,7 +47,7 @@ class Model {
 
     public static function select($fields = []) {
         self::_checkH();
-        return self::$_h->select($fields)->execute();
+        return self::$_h->select($fields);
     }
 
     public static function insert($fields = []) {
