@@ -51,7 +51,7 @@ class Controller {
         http_response_code($info["statusCode"]);
 
         $response = [
-            "success" => $info["success"] ? "true" : "false",
+            "success" => $info["success"] ? true : false,
         ];
 
         if(!$info["success"] && $info["message"]){
