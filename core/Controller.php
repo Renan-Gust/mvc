@@ -54,11 +54,11 @@ class Controller {
             "success" => $info["success"] ? true : false,
         ];
 
-        if(!$info["success"] && $info["message"]){
+        if($info["message"]){
             $response["message"] = $info["message"];
         }
 
-        if($info["data"] && $info["success"]){
+        if($info["data"]){
             $response["data"] = $info["data"];
         }
 
