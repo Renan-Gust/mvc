@@ -54,7 +54,7 @@ class RouterBase
                 }
             }
         } else {
-            return Controller::response(["success" => false, "message" => "Método não encontrado no sistema de rotas"]);
+            return Controller::response(["message" => "Método não encontrado no sistema de rotas"], 404);
         }
 
         $controller = "\src\controllers\\$controller";
