@@ -40,7 +40,7 @@ class Controller {
 
     static public function response($data, $status = 200){
         if(count($data) === 0){
-            header('Content-Type: application/json', true, 400);
+            header('Content-Type: application/json', true, 204);
         } else{
             header('Content-Type: application/json', true, $status);
         }
