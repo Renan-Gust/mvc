@@ -38,31 +38,9 @@ class Controller {
         $this->_render('pages', $viewName, $viewData);
     }
 
-    protected static $info = [
-        "statusCode" => 200,
-        "success" => false,
-        "data" => [],
-        "message" => ""
-    ];
-
-    static public function response($info = []){
-        $info = array_merge(self::$info, $info);
-
-        http_response_code($info["statusCode"]);
-
-        $response = [
-            "success" => $info["success"] ? true : false,
-        ];
-
-        if($info["message"]){
-            $response["message"] = $info["message"];
-        }
-
-        if($info["data"]){
-            $response["data"] = $info["data"];
-        }
-
-        echo json_encode($response);
-        exit;
+    static public function response($data, $status = 200){
+        header('Content-Type: application/json', true, $status);
+        echo json_encode($data);
+        exit();
     }
 }
