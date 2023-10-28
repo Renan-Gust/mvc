@@ -1,7 +1,8 @@
 {
     "require": {
         "clancats/hydrahon": "^1.1",
-        "doctrine/inflector": "^2.0"
+        "doctrine/inflector": "^2.0",
+        "vlucas/phpdotenv": "^5.5"
     },
     "autoload": {
         "psr-4": {
