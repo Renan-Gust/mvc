@@ -54,17 +54,17 @@ class Model {
         self::_checkH();
         // return self::$_h->insert($fields);
 
-        return self::getLastInsertId()->table(self::$_tableName)->insert($fields)->execute();
+        return self::getLastInsertId()->table(self::$_tableName)->insert($fields);
     }
 
     public static function update($fields = []) {
         self::_checkH();
-        return self::$_h->update($fields)->execute();
+        return self::$_h->update($fields);
     }
 
     public static function delete() {
         self::_checkH();
-        return self::$_h->delete()->execute();
+        return self::$_h->delete();
     }
 
     public static function getLastInsertId()
