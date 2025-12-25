@@ -5,4 +5,3 @@ use core\Router;
 $router = new Router();
 
 $router->get('/', 'HomeController@index');
-$router->get('/renan', 'HomeController@index2');

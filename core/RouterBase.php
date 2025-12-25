@@ -22,10 +22,6 @@ class RouterBase extends Controller
             return $this->render('404');
         }
 
-        if (!isset($routes[$method][$url])) {
-            return $this->render('404');
-        }
-
         foreach ($routes[$method] as $route => $callback) {
             // Identifica os argumentos e substitui por regex
             $pattern = preg_replace('(\{[a-zA-Z0-9]{1,}\})', '([a-zA-Z0-9-_]{1,})', $route);
@@ -35,17 +31,7 @@ class RouterBase extends Controller
                 array_shift($matches);
                 array_shift($matches);
 
-                // Pega todos os argumentos para associar
-                $items = [];
-                if (preg_match_all('(\{[a-zA-Z0-9-_]{1,}\})', $route, $m)) {
-                    $items = preg_replace('(\{|\})', '', $m[0]);
-                }
-
-                // Faz a associação
-                $args = [];
-                foreach ($matches as $key => $match) {
-                    $args[$items[$key]] = $match;
-                }
+                $args = Request::getArgs($route, $matches);
 
                 // Seta o controller/action
                 $callbackSplit = explode('@', $callback);
