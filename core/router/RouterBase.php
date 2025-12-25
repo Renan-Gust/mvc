@@ -1,6 +1,8 @@
 <?php
 
-namespace core;
+namespace core\router;
+
+use core\Controller;
 
 // header('Access-Control-Allow-Origin: *');
 // header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, OPTIONS');
@@ -22,19 +24,19 @@ class RouterBase extends Controller
             return $this->render('404');
         }
 
-        foreach ($routes[$method] as $route => $callback) {
+        foreach ($routes[$method] as $route) {
             // Identifica os argumentos e substitui por regex
-            $pattern = preg_replace('(\{[a-zA-Z0-9]{1,}\})', '([a-zA-Z0-9-_]{1,})', $route);
+            $pattern = preg_replace('(\{[a-zA-Z0-9]{1,}\})', '([a-zA-Z0-9-_]{1,})', $route['endpoint']);
 
             // Faz o match da URL
             if (preg_match('#^(' . $pattern . ')*$#i', $url, $matches) === 1) {
                 array_shift($matches);
                 array_shift($matches);
 
-                $args = Request::getArgs($route, $matches);
+                $args = Request::getArgs($route['endpoint'], $matches);
 
                 // Seta o controller/action
-                $callbackSplit = explode('@', $callback);
+                $callbackSplit = explode('@', $route['trigger']);
                 $controller = $callbackSplit[0];
                 if (isset($callbackSplit[1])) {
                     $action = $callbackSplit[1];
@@ -44,8 +46,14 @@ class RouterBase extends Controller
             }
         }
 
+        echo "<pre>";
+        print_r($routes);
+        echo "<pre>";
+
         $controller = "\src\controllers\\$controller";
         $definedController = new $controller();
+
+        $definedController->router = $this;
         $definedController->$action($args);
     }
 }

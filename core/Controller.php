@@ -6,6 +6,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 class Controller
 {
+    protected $router;
 
     protected function redirect($url)
     {
@@ -31,6 +32,8 @@ class Controller
 
             $render = fn($vN, $vD = []) => $this->renderPartial($vN, $vD);
             $baseUrl = $this->getBaseUrl();
+            $router = $this->router;
+
             require '../src/views/' . $folder . '/' . $viewName . '.php';
         } else {
             $this->render('404');
@@ -42,12 +45,12 @@ class Controller
         $this->_render('partials', $viewName, $viewData);
     }
 
-    public function render($viewName, $viewData = [])
+    protected function render($viewName, $viewData = [])
     {
         $this->_render('pages', $viewName, $viewData);
     }
 
-    public function response($data, $status = 200)
+    protected function response($data, $status = 200)
     {
         if (count($data) === 0) {
             header('Content-Type: application/json', true, 204);
