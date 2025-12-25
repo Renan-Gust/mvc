@@ -46,10 +46,6 @@ class RouterBase extends Controller
             }
         }
 
-        echo "<pre>";
-        print_r($routes);
-        echo "<pre>";
-
         $controller = "\src\controllers\\$controller";
         $definedController = new $controller();
 
