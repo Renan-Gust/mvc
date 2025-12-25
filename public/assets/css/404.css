@@ -1,5 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
 @import url('https://fonts.googleapis.com/css?family=Catamaran:400,800');
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Montserrat', Helvetica, sans-serif;
+}
+body {
+  background-color: #416475;
+  color: #92a4ad;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .error-container {
   text-align: center;
   font-size: 180px;
@@ -50,11 +65,13 @@
 	   -moz-transform: rotate(45deg);
 			transform: rotate(45deg);
 }
-
 .screen-reader-text {
     position: absolute;
     top: -9999em;
     left: -9999em;
+}
+h1{
+  text-align: center;
 }
 @keyframes shadowsdancing {
   0% {
@@ -121,50 +138,4 @@
   100% {
     color: #FFC48C;
   }
-}
-
-/* demo stuff */
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-body {
-  background-color: #416475;
-  height: 100vh;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-html, button, input, select, textarea {
-    font-family: 'Montserrat', Helvetica, sans-serif;
-    color: #92a4ad;
-}
-h1 {
-  text-align: center;
-}
-.zoom-area { 
-  max-width: 490px;
-  margin: 30px auto 30px;
-  font-size: 19px;
-  text-align: center;
-}
-.link-container {
-  text-align: center;
-}
-a.more-link {
-  text-transform: uppercase;
-  font-size: 13px;
-    background-color: #92a4ad;
-    padding: 10px 15px;
-    border-radius: 0;
-    color: #416475;
-    display: inline-block;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    line-height: 1.5;
-    text-decoration: none;
-  margin-top: 50px;
-  letter-spacing: 1px;
 }

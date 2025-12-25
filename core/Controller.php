@@ -1,47 +1,57 @@
 <?php
+
 namespace core;
 
-use \src\Config;
+date_default_timezone_set('America/Sao_Paulo');
 
-class Controller {
+class Controller
+{
 
-    protected function redirect($url) {
-        header("Location: ".$this->getBaseUrl().$url);
+    protected function redirect($url)
+    {
+        header("Location: " . $this->getBaseUrl() . '/' . $url);
         exit;
     }
 
-    protected function getBaseUrl() {
+    protected function getBaseUrl()
+    {
         $base = (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') ? 'https://' : 'http://';
         $base .= $_SERVER['SERVER_NAME'];
-        if($_SERVER['SERVER_PORT'] != '80') {
-            $base .= ':'.$_SERVER['SERVER_PORT'];
+        if ($_SERVER['SERVER_PORT'] != '80') {
+            $base .= ':' . $_SERVER['SERVER_PORT'];
         }
-        $base .= Config::BASE_DIR;
-        
+
         return $base;
     }
 
-    private function _render($folder, $viewName, $viewData = []) {
-        if(file_exists('../src/views/'.$folder.'/'.$viewName.'.php')) {
+    private function _render($folder, $viewName, $viewData = [])
+    {
+        if (file_exists('../src/views/' . $folder . '/' . $viewName . '.php')) {
             extract($viewData);
+
             $render = fn($vN, $vD = []) => $this->renderPartial($vN, $vD);
             $baseUrl = $this->getBaseUrl();
-            require '../src/views/'.$folder.'/'.$viewName.'.php';
+            require '../src/views/' . $folder . '/' . $viewName . '.php';
+        } else {
+            $this->render('404');
         }
     }
 
-    private function renderPartial($viewName, $viewData = []) {
+    private function renderPartial($viewName, $viewData = [])
+    {
         $this->_render('partials', $viewName, $viewData);
     }
 
-    public function render($viewName, $viewData = []) {
+    public function render($viewName, $viewData = [])
+    {
         $this->_render('pages', $viewName, $viewData);
     }
 
-    static public function response($data, $status = 200){
-        if(count($data) === 0){
+    public function response($data, $status = 200)
+    {
+        if (count($data) === 0) {
             header('Content-Type: application/json', true, 204);
-        } else{
+        } else {
             header('Content-Type: application/json', true, $status);
         }
 
